@@ -1,0 +1,35 @@
+server:
+  servlet:
+    context-path: /vendorsvr
+
+spring:
+  application:
+    name: vendorservice
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    platform: h2
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  cloud:
+    stream:
+      bindings:
+        output:
+            destination:  vendorChangeTopic
+            content-type: application/json
+      kafka:
+        binder:
+          brokers: kafkaserver
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eurekaserver:8761/eureka/

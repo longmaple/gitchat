@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Welcome</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container authenticated">
+		Logged in as: <label th:text="${username}"></label>
+  		<form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-primary" />
+        </form>
+	</div>
+</body>
+</html>
