@@ -1,0 +1,26 @@
+version: '3.0'
+services:
+  eurekaserver:
+    image:   huajwang/eurekasvr:ttmall
+    ports:
+      - "8761:8761"
+  productservice:
+    image: huajwang/product-service:ttmall
+    ports:
+      - "8282:8282"
+    environment:
+      SERVER_PORT: "8282"
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      EUREKASERVER_PORT:   "8761"
+      DATABASESERVER_PORT: "3306"
+      ENCRYPT_KEY:       "IMSYMMETRIC"
+  vendorservice:
+    image: huajwang/vendor-service:ttmall
+    ports:
+      - "8181:8181"
+    environment:
+      SERVER_PORT: "8181"
+      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      EUREKASERVER_PORT:   "8761"
+      DATABASESERVER_PORT: "3306"
+      ENCRYPT_KEY:       "IMSYMMETRIC"
